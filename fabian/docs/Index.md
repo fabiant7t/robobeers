@@ -84,7 +84,7 @@ Connecting a LED to D13 (with a resistor between 220 and 1000 Ohm)
 ## Step 3: LED with Button and Resistor
 
 LED still on D13, Button on D2 and 10K resistor.
-The resistor prevens signal pin from floating (not 1 or 0 but rapidly changing in between).
+The resistor prevents signal pin from floating (not 1 or 0, but rapidly changing in between).
 
 ## Step 4: LED with Button with internal Resistor
 
