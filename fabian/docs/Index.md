@@ -77,6 +77,8 @@ That one blinks!
 
 I've added a Makefile, the steps are `make build` and `make flash`.
 
+Unfortunately, [[TinyGo]] does not support [[PWM]] yet, which is required to control a [[Servo]]. I've ordered some [[Raspberry Pi Pico]] and a [[Seeed Xiao BLE]] and will have to wait a few days for PWM support.
+
 ## Step 2: LED with Resistor
 
 Connecting a LED to D13 (with a resistor between 220 and 1000 Ohm)
