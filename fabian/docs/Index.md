@@ -1,8 +1,12 @@
 So my journey starts here. I've been into software for more than 30 years by now, came across a lot of languages and am currently using Go and Python most of the time (in that order).
 
-So a natural fit seems to be [[TinyGo]] on a [[ESP32]] board.
+So a natural fit seems to be [[TinyGo]] on a [[ESP32]] board. 
 
 ## Step 1: How to flash [[TinyGo]] on a ESP-WROOM_32?
+
+I will use the[Blinking LED tutorial](https://tinygo.org/docs/tutorials/blinky/) as the basis in `fabian/lab/blinky`.
+
+I am using arch btw.
 
 ```sh
 sudo pacman -S tinygo
@@ -69,5 +73,11 @@ sudo avrdude \
   -U flash:w:main.hex
 ```
 
+That one blinks!
 
-[Blinking LED tutorial](https://tinygo.org/docs/tutorials/blinky/)
+I've added a Makefile, the steps are `make build` and `make flash`.
+
+## Step 2: Add a SG90 PWM motor
+
+This is basically the [Using PWM](https://tinygo.org/docs/tutorials/pwm/) tutorial.
+[[PWM]] is the abbreviation for "[[Pulse-Width Modulation]]".
