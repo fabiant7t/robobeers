@@ -79,9 +79,18 @@ I've added a Makefile, the steps are `make build` and `make flash`.
 
 ## Step 2: LED with Resistor
 
-Connecting a LED to A13.
+Connecting a LED to D13 (with a resistor between 220 and 1000 Ohm)
 
-## Step 3: Add a SG90 PWM motor
+## Step 3: LED with Button and Resistor
+
+LED still on D13, Button on D2 and 10K resistor.
+The resistor prevens signal pin from floating (not 1 or 0 but rapidly changing in between).
+
+## Step 4: LED with Button with internal Resistor
+
+LED still on D13, Button still on D2. Internal machine.PinInputPullup resistor.
+
+## Step n: Add a SG90 PWM motor
 
 This is basically the [Using PWM](https://tinygo.org/docs/tutorials/pwm/) tutorial.
 [[PWM]] is the abbreviation for "[[Pulse-Width Modulation]]".
