@@ -1,5 +1,6 @@
 
 [List of supported boards](https://tinygo.org/docs/reference/microcontrollers)
+[Linux install guide](https://tinygo.org/getting-started/install/linux/)
 
 A compiled go binary is 1MB+, which includes the whole standard library.
 These small boards have size limits and standard Go is obviously too big.
