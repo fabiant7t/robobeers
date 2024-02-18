@@ -77,7 +77,11 @@ That one blinks!
 
 I've added a Makefile, the steps are `make build` and `make flash`.
 
-## Step 2: Add a SG90 PWM motor
+## Step 2: LED with Resistor
+
+Connecting a LED to A13.
+
+## Step 3: Add a SG90 PWM motor
 
 This is basically the [Using PWM](https://tinygo.org/docs/tutorials/pwm/) tutorial.
 [[PWM]] is the abbreviation for "[[Pulse-Width Modulation]]".
