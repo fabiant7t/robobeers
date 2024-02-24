@@ -3,6 +3,8 @@ package main
 import (
 	"machine"
 	"time"
+
+	"tinygo.org/x/drivers/servo"
 )
 
 const (
@@ -17,36 +19,22 @@ func main() {
 	pin := machine.GPIO16
 	pwm := machine.PWM0
 
-	err := pwm.Configure(machine.PWMConfig{
-		Period: period,
-	})
+	a, err := servo.NewArray(pwm)
 	if err != nil {
 		panic(err)
 	}
-	ch, err := pwm.Channel(machine.Pin(pin))
+
+	s, err := a.Add(pin)
 	if err != nil {
 		panic(err)
 	}
 
 	for {
-		// Center
-		value := uint64(pwm.Top()) * 1500 / (period / 1000)
-		pwm.Set(ch, uint32(value))
-		sleep()
-
-		// 90 degrees left
-		value = uint64(pwm.Top()) * 2000 / (period / 1000)
-		pwm.Set(ch, uint32(value))
-		sleep()
-
-		// Center
-		value = uint64(pwm.Top()) * 1500 / (period / 1000)
-		pwm.Set(ch, uint32(value))
-		sleep()
-
-		// 90 degrees right
-		value = uint64(pwm.Top()) * 1000 / (period / 1000)
-		pwm.Set(ch, uint32(value))
-		sleep()
+		s.SetMicroseconds(1500)
+		time.Sleep(1 * time.Second)
+		s.SetMicroseconds(1600)
+		time.Sleep(1 * time.Second)
+		s.SetMicroseconds(1700)
+		time.Sleep(1 * time.Second)
 	}
 }
