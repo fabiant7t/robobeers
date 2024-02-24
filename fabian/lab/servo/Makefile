@@ -1,3 +1,5 @@
+GOTOOLCHAIN=go1.21.7+auto
+
 build:
 	docker run \
 	  --rm \
@@ -6,12 +8,9 @@ build:
 	  tinygo/tinygo:0.30.0 tinygo build \
 	  -o /src/main.hex \
 	  -size=short \
-	  -target=arduino-mega2560
+	  -target=pico
 
 flash:
-	sudo avrdude \
-	  -p atmega2560 \
-	  -c wiring \
-	  -P /dev/ttyACM0 \
-	  -b 115200 \
-	  -U flash:w:main.hex
+	GOTOOLCHAIN=${GOTOOLCHAIN} tinygo flash \
+	  -target pico \
+	  main.go

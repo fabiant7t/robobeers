@@ -30,6 +30,13 @@ Success. You may now run 'go1.21.7'
 alias go=$(which go1.21.7)
 ```
 
+Edit:
+I can use tinygo when setting the go toolchain to v1.21.7, see
+https://go.dev/doc/toolchain
+```sh
+go env -w GOTOOLCHAIN=go1.21.7+auto
+```
+
 TinyGo is compiled with the current go version, so it is not working this way. Trying docker to build the firmware:
 
 ```sh

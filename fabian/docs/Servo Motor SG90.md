@@ -8,3 +8,10 @@ VCC is red
 PWM is orange
 
 50 Hertz -> 20 ms (One PWM period)
+
+Duty cycle:
+0 degrees (center) 1.5ms
++90 degrees 2ms
+-90 degrees 1ms
+
+Wait for the rest of the period.

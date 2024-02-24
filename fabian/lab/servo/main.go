@@ -5,31 +5,48 @@ import (
 	"time"
 )
 
-var (
-	period uint64 = 2000000 // in nanoseconds, it's 10^9 / frequency (50 Hz) in Austria
+const (
+	period = 20e6 // 20000 Microseconds
 )
 
-func main() {
-	// This program is specific to the Raspberry Pi Pico.
-	pin := machine.D9
-	pwm := machine.Timer1
+func sleep() {
+	time.Sleep(500 * time.Millisecond)
+}
 
-	// Configure the PWM with the given period.
-	pwm.Configure(machine.PWMConfig{
+func main() {
+	pin := machine.GPIO16
+	pwm := machine.PWM0
+
+	err := pwm.Configure(machine.PWMConfig{
 		Period: period,
 	})
-
-	ch, err := pwm.Channel(pin)
 	if err != nil {
-		println(err.Error())
-		return
+		panic(err)
+	}
+	ch, err := pwm.Channel(machine.Pin(pin))
+	if err != nil {
+		panic(err)
 	}
 
 	for {
-		for i := 1; i < 255; i++ {
-			// This performs a stylish fade-out blink
-			pwm.Set(ch, pwm.Top()/uint32(i))
-			time.Sleep(time.Millisecond * 5)
-		}
+		// Center
+		value := uint64(pwm.Top()) * 1500 / (period / 1000)
+		pwm.Set(ch, uint32(value))
+		sleep()
+
+		// 90 degrees left
+		value = uint64(pwm.Top()) * 2000 / (period / 1000)
+		pwm.Set(ch, uint32(value))
+		sleep()
+
+		// Center
+		value = uint64(pwm.Top()) * 1500 / (period / 1000)
+		pwm.Set(ch, uint32(value))
+		sleep()
+
+		// 90 degrees right
+		value = uint64(pwm.Top()) * 1000 / (period / 1000)
+		pwm.Set(ch, uint32(value))
+		sleep()
 	}
 }
